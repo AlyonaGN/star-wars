@@ -1,0 +1,25 @@
+.person {
+  border-radius: 10px;
+  background-color: hsla(0, 100%, 100%, 0.08);
+  box-shadow:
+		/* offset-x | offset-y | blur-radius | spread-radius | color */ 0px
+      3px 4px 0px hsla(0, 0%, 0%, 0.14),
+    0px 3px 3px -2px hsla(0, 0%, 0%, 0.12), 0px 1px 8px 0px hsla(0, 0%, 0%, 0.2);
+  padding: 30px;
+  margin: 20px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.person_active {
+  background-color: hsla(0, 100%, 100%, 0.16);
+  box-shadow:
+		/* offset-x | offset-y | blur-radius | spread-radius | color */ 0px
+      24px 38px 3px hsla(0, 0%, 0%, 0.14),
+    0px 9px 46px 8px hsla(0, 0%, 0%, 0.12),
+    0px 11px 15px -7px hsla(0, 0%, 0%, 0.2);
+}
+
+.person:hover {
+  opacity: 0.8;
+}

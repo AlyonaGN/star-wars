@@ -1,4 +1,3 @@
-//чистая функция
 export const getPeople = (baseUrl) => {
   return fetch(`${baseUrl}/people`, {
     method: 'GET',

@@ -1,9 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
-import { api } from '../utils/ApiClass';
+import React, { useCallback, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { getPeople } from '../utils/ApiFunctional';
 import { SWAPI_BASE_URL } from '../utils/API_CONSTS';
+import Person from './Person';
 
 const People = () => {
+  const [people, setPeople] = useState([]);
+  const [chosenPerson, setChosenPerson] = useState('');
   const curryFunction = (f) => {
     return function (people) {
       return function (name) {
@@ -16,12 +19,16 @@ const People = () => {
     return people.filter((person) => person.name === personName).length > 0;
   }, []);
 
+  const updateChosenOne = useCallback((e) => {
+    const { name } = e.target.closest('.person').dataset;
+    console.log(name);
+    setChosenPerson(name);
+  }, []);
+
   useEffect(() => {
-    api.getPeople().then((res) => {
-      console.log('res from class:', res);
-    });
     getPeople(SWAPI_BASE_URL).then((res) => {
       console.log('res from func:', res);
+      setPeople(res.results);
       const curriedFunction = curryFunction(isPersonHere);
       console.log(
         'from curried func',
@@ -30,7 +37,18 @@ const People = () => {
     });
   }, []);
 
-  return <div className="people"></div>;
+  return (
+    <div className="people">
+      {people.map((person) => (
+        <Person
+          key={uuidv4()}
+          name={person.name}
+          handleClick={updateChosenOne}
+          chosen={person.name === chosenPerson}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default People;

@@ -9,8 +9,8 @@ class Api {
     return fetch(`${this.baseUrl}/people`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     })
       .then((res) => {
         return res.json();
@@ -22,5 +22,5 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: SWAPI_BASE_URL,
+  baseUrl: SWAPI_BASE_URL
 });
