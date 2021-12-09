@@ -26,3 +26,26 @@
   margin: 10px auto;
   font-weight: 700px;
 }
+
+@media screen and (max-width: 650px) {
+  .person__name {
+    font-weight: 600;
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .person__name {
+    font-weight: 500;
+    font-size: 27px;
+  }
+  .person {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .person {
+    width: 200px;
+  }
+}

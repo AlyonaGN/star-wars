@@ -9,3 +9,21 @@
   margin: 15px auto;
   display: block;
 }
+
+@media screen and (max-width: 650px) {
+  .header__logo {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .header__logo {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .header__logo {
+    width: 250px;
+  }
+}
