@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/star-wars/static/css/main.6033819a.chunk.css",
+    "main.css": "/star-wars/static/css/main.0d14af35.chunk.css",
     "main.js": "/star-wars/static/js/main.3c759a38.chunk.js",
     "main.js.map": "/star-wars/static/js/main.3c759a38.chunk.js.map",
     "runtime-main.js": "/star-wars/static/js/runtime-main.5e66963a.js",
@@ -8,7 +8,7 @@
     "static/js/2.44b0d476.chunk.js": "/star-wars/static/js/2.44b0d476.chunk.js",
     "static/js/2.44b0d476.chunk.js.map": "/star-wars/static/js/2.44b0d476.chunk.js.map",
     "index.html": "/star-wars/index.html",
-    "static/css/main.6033819a.chunk.css.map": "/star-wars/static/css/main.6033819a.chunk.css.map",
+    "static/css/main.0d14af35.chunk.css.map": "/star-wars/static/css/main.0d14af35.chunk.css.map",
     "static/js/2.44b0d476.chunk.js.LICENSE.txt": "/star-wars/static/js/2.44b0d476.chunk.js.LICENSE.txt",
     "static/media/index.css": "/star-wars/static/media/sky-back.883682ee.jpg",
     "static/media/star.669bd576.svg": "/star-wars/static/media/star.669bd576.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.5e66963a.js",
     "static/js/2.44b0d476.chunk.js",
-    "static/css/main.6033819a.chunk.css",
+    "static/css/main.0d14af35.chunk.css",
     "static/js/main.3c759a38.chunk.js"
   ]
 }
