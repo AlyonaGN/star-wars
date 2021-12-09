@@ -4,6 +4,14 @@
   margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
+}
+.people__title {
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 800;
+  font-size: 40px;
 }

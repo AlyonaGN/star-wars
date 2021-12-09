@@ -1,5 +1,5 @@
 .main {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(4, 4, 22, 0.945);
+  background-image: url('../images/sky-back.jpg');
 }

@@ -2,8 +2,8 @@ export const getPeople = (baseUrl) => {
   return fetch(`${baseUrl}/people`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   })
     .then((res) => {
       return res.json();
@@ -17,8 +17,8 @@ export const getPerson = (baseUrl, id) => {
   return fetch(`${baseUrl}/people/${id}`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   })
     .then((res) => {
       return res.json();

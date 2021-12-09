@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Source Sans 3', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('SourceSans3-Medium.ttf') format('truetype');
+}

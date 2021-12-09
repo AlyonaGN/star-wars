@@ -4,10 +4,8 @@
   margin: 0 auto;
 }
 
-.header__title {
-  font-size: 30px;
-  line-height: 1.8;
-  margin: 10px auto;
-  color: yellow;
-  text-align: center;
+.header__logo {
+  width: 600px;
+  margin: 15px auto;
+  display: block;
 }
