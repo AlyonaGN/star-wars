@@ -7,8 +7,8 @@
 .switcher__toggle-button {
   position: relative;
   display: block;
-  width: 100px;
-  height: 50px;
+  width: 70px;
+  height: 30px;
   margin-left: auto;
   background-color: rgba(255, 255, 255, 0.096);
   border-radius: 30px;
@@ -27,8 +27,8 @@
   position: absolute;
   left: 3px;
   top: 1.5px;
-  width: 45px;
-  height: 45px;
+  width: 28px;
+  height: 28px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   transform: translateX(0);

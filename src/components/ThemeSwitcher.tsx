@@ -1,15 +1,13 @@
 import React from 'react';
 
-interface ThemeSwitcherProps {
-  isDark: boolean
-}
-
-const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ isDark }: ThemeSwitcherProps)  => {
+const ThemeSwitcher: React.FC = () => {
   return (
-    <div
-      className='switcher'
-    >
-      <input type="checkbox" id="toggle-button" className="switcher__toggle-button"/>
+    <div className="switcher">
+      <input
+        type="checkbox"
+        id="toggle-button"
+        className="switcher__toggle-button"
+      />
     </div>
   );
 };
