@@ -10,7 +10,7 @@ import Person from './Person';
 import { Preloader } from './Preloader';
 
 const PeopleComponent = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [person, setPerson] = useState<PersonInterface>({
     personName: '',
     img: ''
