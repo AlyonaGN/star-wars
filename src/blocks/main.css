@@ -1,6 +1,33 @@
 .main {
   width: 100vw;
   min-height: 100vh;
-  background-image: url('../images/sky-back.jpg');
   background-size: cover;
+}
+
+.main_light {
+  animation: changeLight 2s;
+  background-image: url('../images/lightback.jpg');
+}
+
+.main_dark {
+  animation: changeDark 2s;
+  background-image: url('../images/sky-back.jpg');
+}
+
+@keyframes changeDark {
+  from {
+    background-image: url('../images/lightback.jpg');
+  }
+  to {
+    background-image: url('../images/sky-back.jpg');
+  }
+}
+
+@keyframes changeLight {
+  from {
+    background-image: url('../images/sky-back.jpg');
+  }
+  to {
+    background-image: url('../images/lightback.jpg');
+  }
 }
