@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { PersonInterface } from '../interfaces/Person';
 import { getPerson } from '../utils/api/ApiFunctional';
@@ -8,13 +9,15 @@ import { getRandomId } from '../utils/helpers/getRandomId';
 import { KEYS } from '../utils/localStorage/STORAGE_KEYS';
 import Person from './Person';
 import { Preloader } from './Preloader';
+import { peopleActions } from '../store/people/actions';
 
-const PeopleComponent = () => {
+interface PeopleProps {
+  person: PersonInterface,
+  setPerson: (person: PersonInterface) => void
+}
+
+const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [person, setPerson] = useState<PersonInterface>({
-    personName: '',
-    img: ''
-  });
 
   const createPerson = useCallback(
     (name: string, img: string): PersonInterface => {
@@ -36,8 +39,9 @@ const PeopleComponent = () => {
       const image = `${IMG_URL}${getId(res.url)}.jpg`;
       const person = createPerson(res.name, image);
       setPerson(person);
+      /* dispatch(peopleActions.setPerson(person)); */
     },
-    [createPerson]
+    [createPerson, setPerson]
   );
 
   const isIdExpired = (id: string) => {
@@ -98,4 +102,12 @@ const PeopleComponent = () => {
   );
 };
 
-export default PeopleComponent;
+const mapStateToProps = (state: { people: { person: PersonInterface } } ) => ({
+  person: state.people.person,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  setPerson: (person: PersonInterface) => dispatch(peopleActions.setPerson(person))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PeopleComponent);

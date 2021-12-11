@@ -3,7 +3,7 @@ export const peopleActionTypes = {
 };
 
 export const peopleActions = {
-  setPeople: (payload) => {
+  setPerson: (payload) => {
     return { type: peopleActionTypes.SET_PERSON, payload };
   }
 };
