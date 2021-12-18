@@ -1,7 +1,7 @@
 import { themeActionTypes } from './actions';
 
 const initialState = {
-  isDark: false
+  isDark: true
 };
 
 const themeReducer = (state = initialState, action) => {

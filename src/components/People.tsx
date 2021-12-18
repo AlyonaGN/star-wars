@@ -10,15 +10,16 @@ import { KEYS } from '../utils/localStorage/STORAGE_KEYS';
 import Person from './Person';
 import { Preloader } from './Preloader';
 import { peopleActions } from '../store/people/actions';
+import vader from '../images/vader.jpg';
 
 interface PeopleProps {
-  person: PersonInterface,
-  setPerson: (person: PersonInterface) => void
+  person: PersonInterface;
+  setPerson: (person: PersonInterface) => void;
 }
 
 const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  const [, setErr] = useState<Error>();
   const createPerson = useCallback(
     (name: string, img: string): PersonInterface => {
       return {
@@ -39,7 +40,6 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
       const image = `${IMG_URL}${getId(res.url)}.jpg`;
       const person = createPerson(res.name, image);
       setPerson(person);
-      /* dispatch(peopleActions.setPerson(person)); */
     },
     [createPerson, setPerson]
   );
@@ -54,16 +54,29 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
   );
 
   useEffect(() => {
-    if (isValidIdInStorage()) {
+    setPerson({
+      personName: 'Darth Vader',
+      img: vader
+    });
+    setIsLoading(false);
+    /*  if (isValidIdInStorage()) {
       const id = JSON.parse(localStorage.getItem(KEYS.id)!).id;
       getPerson(SWAPI_BASE_URL, id)
         .then((res) => {
           onPersonReceipt(res);
-        })
-        .then(() => {
           setTimeout(() => {
             setIsLoading(false);
           }, 1000);
+        })
+        .catch(() => {
+          setPerson({
+            personName: 'Darth Vader',
+            img: vader
+          });
+          setIsLoading(false);
+          setErr(() => {
+            throw new Error('Couldn`t load person from swapi');
+          });
         });
     } else {
       const id = getRandomId();
@@ -75,13 +88,21 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
             day: new Date().getDate()
           };
           localStorage.setItem(KEYS.id, JSON.stringify(idAndTime));
-        })
-        .then(() => {
           setTimeout(() => {
             setIsLoading(false);
           }, 1000);
+        })
+        .catch(() => {
+          setPerson({
+            personName: 'Darth Vader',
+            img: vader
+          });
+          setIsLoading(false);
+          setErr(() => {
+            throw new Error('Couldn`t load person from swapi');
+          });
         });
-    }
+    } */
   }, []);
 
   return (
@@ -102,12 +123,13 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
   );
 };
 
-const mapStateToProps = (state: { people: { person: PersonInterface } } ) => ({
-  person: state.people.person,
+const mapStateToProps = (state: { people: { person: PersonInterface } }) => ({
+  person: state.people.person
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setPerson: (person: PersonInterface) => dispatch(peopleActions.setPerson(person))
+  setPerson: (person: PersonInterface) =>
+    dispatch(peopleActions.setPerson(person))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PeopleComponent);

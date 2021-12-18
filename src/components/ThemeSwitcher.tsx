@@ -8,7 +8,6 @@ interface SwitcherProps {
 }
 
 const ThemeSwitcher: React.FC<SwitcherProps> = ({ isDark, setTheme }) => {
-  console.log(isDark);
   return (
     <div className="switcher">
       <input
