@@ -1,15 +1,14 @@
-import { useSelector } from 'react-redux';
+
+import { useAppSelector } from '../store/hooks';
 import Header from './Header';
-import People from './People';
+import PeopleComponent from './People';
 
 const Main: React.FC = () => {
-  const isDark = useSelector((st: any) => {
-    return st.theme.isDark;
-  })
+  const isDark = useAppSelector(state => state.theme.isDark);
   return (
     <div className={isDark ? "main main_dark" : "main main_light"}>
       <Header />
-      <People />
+      <PeopleComponent />
     </div>
   );
 };

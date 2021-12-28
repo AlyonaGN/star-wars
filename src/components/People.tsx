@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { setPerson } from '../store/peopleSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { PersonInterface } from '../interfaces/Person';
 import { getPerson } from '../utils/api/ApiFunctional';
@@ -9,15 +10,11 @@ import { getRandomId } from '../utils/helpers/getRandomId';
 import { KEYS } from '../utils/localStorage/STORAGE_KEYS';
 import Person from './Person';
 import { Preloader } from './Preloader';
-import { peopleActions } from '../store/people/actions';
 import vader from '../images/vader.jpg';
 
-interface PeopleProps {
-  person: PersonInterface;
-  setPerson: (person: PersonInterface) => void;
-}
-
-const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
+const PeopleComponent: React.FC = () => {
+  const person = useAppSelector(state => state.people.person);
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [, setErr] = useState<Error>();
   const createPerson = useCallback(
@@ -39,9 +36,9 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
       setIsLoading(true);
       const image = `${IMG_URL}${getId(res.url)}.jpg`;
       const person = createPerson(res.name, image);
-      setPerson(person);
+      dispatch(setPerson(person));
     },
-    [createPerson, setPerson]
+    [createPerson, dispatch]
   );
 
   const isIdExpired = (id: string) => {
@@ -54,12 +51,8 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
   );
 
   useEffect(() => {
-    setPerson({
-      personName: 'Darth Vader',
-      img: vader
-    });
-    setIsLoading(false);
-    /*  if (isValidIdInStorage()) {
+
+    if (isValidIdInStorage()) {
       const id = JSON.parse(localStorage.getItem(KEYS.id)!).id;
       getPerson(SWAPI_BASE_URL, id)
         .then((res) => {
@@ -69,10 +62,10 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
           }, 1000);
         })
         .catch(() => {
-          setPerson({
+          dispatch(setPerson({
             personName: 'Darth Vader',
             img: vader
-          });
+          }));
           setIsLoading(false);
           setErr(() => {
             throw new Error('Couldn`t load person from swapi');
@@ -93,16 +86,16 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
           }, 1000);
         })
         .catch(() => {
-          setPerson({
+          dispatch(setPerson({
             personName: 'Darth Vader',
             img: vader
-          });
+          }));
           setIsLoading(false);
           setErr(() => {
             throw new Error('Couldn`t load person from swapi');
           });
         });
-    } */
+    }
   }, []);
 
   return (
@@ -123,13 +116,4 @@ const PeopleComponent: React.FC<PeopleProps> = ({ person, setPerson }) => {
   );
 };
 
-const mapStateToProps = (state: { people: { person: PersonInterface } }) => ({
-  person: state.people.person
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setPerson: (person: PersonInterface) =>
-    dispatch(peopleActions.setPerson(person))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PeopleComponent);
+export default PeopleComponent;

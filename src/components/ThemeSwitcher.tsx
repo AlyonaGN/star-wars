@@ -1,35 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { themeActions } from '../store/theme/actions';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { setTheme } from '../store/themeSlice';
 
-interface SwitcherProps {
-  isDark: boolean,
-  setTheme: (isDark: boolean) => void
-}
-
-const ThemeSwitcher: React.FC<SwitcherProps> = ({ isDark, setTheme }) => {
+const ThemeSwitcher: React.FC = () => {
+  const isDark = useAppSelector(state => state.theme.isDark);
+  const dispatch = useAppDispatch();
   return (
     <div className="switcher">
       <input
         type="checkbox"
         id="toggle-button"
         className="switcher__toggle-button"
-        onChange={() => setTheme(isDark)}
+        onChange={() => dispatch(setTheme(!isDark))}
       />
     </div>
   );
 };
 
-const mapStateToProps = (state: { theme: { isDark: boolean } } ) => ({
-  isDark: state.theme.isDark,
-});
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    setTheme: (isDark: boolean) => dispatch(themeActions.setTheme(!isDark)),
-  }
-}
 
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ThemeSwitcher);
+export default ThemeSwitcher;
