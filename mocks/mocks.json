@@ -1,0 +1,11 @@
+[
+  {
+    "id": "base",
+    "routesVariants": ["post-feedback:success"]
+  },
+  {
+    "id": "no-headers",
+    "from": "base",
+    "routesVariants": ["add-headers:disabled"]
+  }
+]

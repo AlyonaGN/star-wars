@@ -1,0 +1,30 @@
+.form__title {
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.form__input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  outline: none;
+  border: none;
+}
+
+.form__button {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+  border-radius: 12px;
+  padding: 5px 13px;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+.form__button:hover {
+  opacity: 0.8;
+}

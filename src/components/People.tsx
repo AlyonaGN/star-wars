@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { compose } from 'redux';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { setPerson } from '../store/peopleSlice';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,12 +10,15 @@ import { KEYS } from '../utils/localStorage/STORAGE_KEYS';
 import Person from './Person';
 import { Preloader } from './Preloader';
 import vader from '../images/vader.jpg';
+import { usePersonContext } from '../contexts/PersonProvider';
 
 const PeopleComponent: React.FC = () => {
   const person = useAppSelector(state => state.people.person);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [, setErr] = useState<Error>();
+  const { isPersonFromStorage } = usePersonContext();
+
   const createPerson = useCallback(
     (name: string, img: string): PersonInterface => {
       return {
@@ -41,18 +43,9 @@ const PeopleComponent: React.FC = () => {
     [createPerson, dispatch]
   );
 
-  const isIdExpired = (id: string) => {
-    return JSON.parse(id).day === new Date().getDate();
-  };
-
-  const isValidIdInStorage = compose(
-    (id) => (id ? isIdExpired(id) : false),
-    () => localStorage.getItem(KEYS.id)
-  );
-
   useEffect(() => {
 
-    if (isValidIdInStorage()) {
+    if (isPersonFromStorage) {
       const id = JSON.parse(localStorage.getItem(KEYS.id)!).id;
       getPerson(SWAPI_BASE_URL, id)
         .then((res) => {
@@ -67,9 +60,6 @@ const PeopleComponent: React.FC = () => {
             img: vader
           }));
           setIsLoading(false);
-          setErr(() => {
-            throw new Error('Couldn`t load person from swapi');
-          });
         });
     } else {
       const id = getRandomId();
@@ -91,9 +81,6 @@ const PeopleComponent: React.FC = () => {
             img: vader
           }));
           setIsLoading(false);
-          setErr(() => {
-            throw new Error('Couldn`t load person from swapi');
-          });
         });
     }
   }, []);
