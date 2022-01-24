@@ -12,8 +12,8 @@ export default function FeedbackForm() {
   };
 
   return (
-    <form onSubmit={submit}>
-      <h2 className="form__title">Do you think the character suits you?</h2>
+    <form className="form" onSubmit={submit}>
+      <h2 className="form__title">Do you think the characters suits you?</h2>
       <input 
         className="form__input"
         {...feedbackProps}

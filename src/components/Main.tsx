@@ -1,7 +1,7 @@
 
 import { useAppSelector } from '../store/hooks';
 import Header from './Header';
-import PeopleComponent from './People';
+import PeopleComponent from './PeopleWrapper';
 
 const Main: React.FC = () => {
   const isDark = useAppSelector(state => state.theme.isDark);

@@ -1,5 +1,4 @@
-import React from 'react';
-import FeedbackForm from "./FeedbackForm";
+import React, { memo } from 'react';
 
 interface PersonProps {
   personName: string;
@@ -7,6 +6,7 @@ interface PersonProps {
 }
 
 const Person: React.FC<PersonProps> = ({ personName, img }: PersonProps)  => {
+  console.log('rendered', personName);
   return (
     <div
       data-personname={personName}
@@ -14,9 +14,14 @@ const Person: React.FC<PersonProps> = ({ personName, img }: PersonProps)  => {
     >
       <img className="person__img" src={img} alt='character-pic' />
       <h2 className="person__name">{personName}</h2>
-      <FeedbackForm/>
+      
     </div>
   );
 };
 
-export default Person;
+const PurePerson = memo(
+  Person,
+  (prevProps, nextProps) => prevProps.personName === nextProps.personName
+);
+
+export default PurePerson;

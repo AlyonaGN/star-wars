@@ -1,17 +1,25 @@
+.form {
+  padding-bottom: 10px;
+}
+
 .form__title {
   font-size: 20px;
   line-height: 1.5;
   text-align: center;
   margin: 20px 0;
+  color: #fff;
 }
 
 .form__input {
-  width: 100%;
+  width: 50%;
+  min-width: 280px;
   padding: 8px;
   border-radius: 12px;
-  margin-bottom: 15px;
+  margin: 0 auto 15px;
+  text-align: center;
   outline: none;
   border: none;
+  display: block;
 }
 
 .form__button {
